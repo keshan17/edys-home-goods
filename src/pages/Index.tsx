@@ -5,6 +5,7 @@ import ProductsSection from "@/components/ProductsSection";
 import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import WishlistDrawer from "@/components/WishlistDrawer";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <AboutSection />
       <Footer />
       <CartDrawer />
+      <WishlistDrawer />
     </div>
   );
 };
