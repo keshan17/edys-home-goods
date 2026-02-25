@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import catDrinkware from "@/assets/cat-drinkware.jpg";
 import catVases from "@/assets/cat-vases.jpg";
 import catTableware from "@/assets/cat-tableware.jpg";
@@ -22,9 +23,9 @@ const CategoriesSection = () => {
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {categories.map((cat) => (
-            <a
+            <Link
               key={cat.name}
-              href="#"
+              to={`/category/${cat.name.toLowerCase()}`}
               className="group relative aspect-square overflow-hidden"
             >
               <img
@@ -39,7 +40,7 @@ const CategoriesSection = () => {
                   {cat.name}
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

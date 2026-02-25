@@ -1,23 +1,11 @@
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, Heart } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
-import prod1 from "@/assets/prod-1.jpg";
-import prod2 from "@/assets/prod-2.jpg";
-import prod3 from "@/assets/prod-3.jpg";
-import prod4 from "@/assets/prod-4.jpg";
-import prod5 from "@/assets/prod-5.jpg";
-import prod6 from "@/assets/prod-6.jpg";
-
-const products = [
-  { name: "Crystal Wine Glass", price: "LKR 2,500", image: prod1 },
-  { name: "Flora Glass Vase", price: "LKR 4,800", image: prod2 },
-  { name: "Elegance Serving Bowl", price: "LKR 3,200", image: prod3 },
-  { name: "Amber Candle Holder", price: "LKR 1,800", image: prod4 },
-  { name: "Whiskey Tumbler Set", price: "LKR 5,500", image: prod5 },
-  { name: "Globe Pendant Light", price: "LKR 8,900", image: prod6 },
-];
+import { useWishlist } from "@/contexts/WishlistContext";
+import { products } from "@/data/products";
 
 const ProductsSection = () => {
   const { addItem } = useCart();
+  const { toggleItem, isInWishlist } = useWishlist();
 
   return (
     <section id="products" className="py-20 md:py-28 bg-muted">
@@ -33,6 +21,17 @@ const ProductsSection = () => {
             <div key={product.name} className="group">
               <div className="aspect-[4/5] overflow-hidden bg-card mb-4 relative">
                 <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                <button
+                  onClick={() => toggleItem(product)}
+                  className={`absolute top-3 right-3 p-2 rounded-full transition-all duration-300 ${
+                    isInWishlist(product.name)
+                      ? "bg-destructive text-destructive-foreground opacity-100"
+                      : "bg-primary text-primary-foreground opacity-0 group-hover:opacity-100"
+                  }`}
+                  aria-label={`Toggle wishlist for ${product.name}`}
+                >
+                  <Heart className="w-4 h-4" fill={isInWishlist(product.name) ? "currentColor" : "none"} />
+                </button>
                 <button
                   onClick={() => addItem(product)}
                   className="absolute bottom-3 right-3 bg-primary text-primary-foreground p-2.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110"
