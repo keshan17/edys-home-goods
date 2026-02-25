@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import { ShoppingBag, Heart, ArrowLeft } from "lucide-react";
 import { products } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
@@ -12,6 +13,10 @@ const CategoryPage = () => {
   const { categoryName } = useParams<{ categoryName: string }>();
   const { addItem } = useCart();
   const { toggleItem, isInWishlist } = useWishlist();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [categoryName]);
 
   const displayName = categoryName
     ? categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
