@@ -1,6 +1,6 @@
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 md:py-28 bg-primary">
+    <section id="about" className="py-20 md:py-28 bg-rose">
       <div className="container max-w-3xl text-center">
         <h2 className="font-display text-3xl md:text-4xl text-primary-foreground mb-6">
           About Diven Casa
