@@ -7,7 +7,7 @@ const HeroSection = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
-      <div className="absolute inset-0 bg-rose/60" />
+      <div className="absolute inset-0 bg-primary/50" />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
         <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-primary-foreground mb-6 animate-fade-in-up tracking-wide">
           Elegance in Every Detail
