@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Search, ShoppingBag, Heart } from "lucide-react";
-import { useCart } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
+import { useCartStore } from "@/stores/cartStore";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.jpg";
 import SearchDialog from "@/components/SearchDialog";
@@ -17,8 +17,12 @@ const navLinks = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const { totalCount, setIsOpen: setCartOpen } = useCart();
+  const totalCount = useCartStore(state => state.totalCount);
   const { items: wishlistItems, setIsOpen: setWishlistOpen } = useWishlist();
+
+  const openCart = () => {
+    (window as any).__openShopifyCart?.();
+  };
 
   return (
     <>
@@ -56,11 +60,13 @@ const Navbar = () => {
                   </span>
                 )}
               </button>
-              <button onClick={() => setCartOpen(true)} className="relative">
+              <button onClick={openCart} className="relative">
                 <ShoppingBag className="w-4 h-4 text-primary-foreground cursor-pointer hover:opacity-70 transition-opacity" />
-                <span className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  {totalCount}
-                </span>
+                {totalCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                    {totalCount}
+                  </span>
+                )}
               </button>
             </div>
           </div>
@@ -90,11 +96,13 @@ const Navbar = () => {
                     </span>
                   )}
                 </button>
-                <button onClick={() => { setCartOpen(true); setMobileOpen(false); }} className="relative">
+                <button onClick={() => { openCart(); setMobileOpen(false); }} className="relative">
                   <ShoppingBag className="w-5 h-5 text-primary-foreground" />
-                  <span className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                    {totalCount}
-                  </span>
+                  {totalCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                      {totalCount}
+                    </span>
+                  )}
                 </button>
               </div>
             </div>
