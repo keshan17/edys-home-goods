@@ -4,7 +4,7 @@ import CategoriesSection from "@/components/CategoriesSection";
 import ProductsSection from "@/components/ProductsSection";
 import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
+import ShopifyCartDrawer from "@/components/ShopifyCartDrawer";
 import WishlistDrawer from "@/components/WishlistDrawer";
 
 const Index = () => {
@@ -16,7 +16,7 @@ const Index = () => {
       <ProductsSection />
       <AboutSection />
       <Footer />
-      <CartDrawer />
+      <ShopifyCartDrawer />
       <WishlistDrawer />
     </div>
   );
